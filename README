@@ -1,0 +1,25 @@
+================
+GTOC 8 - Team 20
+================
+
+Overview
+--------
+
+GTOC 8 Website: http://sophia.estec.esa.int/gtoc_portal/?page_id=560
+
+Installation
+------------
+
+Using the conda package manager, an environment with the required packages
+and versions can be easily created (see file ``environment.yml``)::
+
+  $ conda env create
+  $ source activate gtoc8
+  (gtoc8) $ python
+
+License
+-------
+
+This code is made available under the MIT license, hence allowing for
+commercial reuse. Please see ``COPYING`` file for details.
+
