@@ -1,0 +1,35 @@
+Clarifications and responses to questions on GTOC8 problem.
+Anastassios Petropoulos
+Last updated: 04June2015
+
+1) The propellant mass of 2110kg, can it be used for either chemical
+propulsion or low-thrust propulsion? If we don't use the chemical
+propulsion, can all 2110kg of propellant used for the low-thrust
+propulsion?
+
+"Jein": The 2110 kg can be spent part chemical and part low-thrust.
+It cannot be spent all on chemical.  The part that is spent chemically
+cannot give you more DV than 3km/s.  The part spent chemically must be
+spent before the low-thrust part.  You can choose to spend all 2110 kg
+with low-thrust (i.e. you can choose to have no chemical part).
+
+
+2) Do observations of different radio sources have to be spaced by 15
+days, too? Or is the 15 days constraint only applicable for
+observations of the same radio source?
+
+Yes.  **All**  observations, regardless of same source or not, must be
+15 days  **or more**  apart.
+
+
+3) How do we have to report Gravity Assists at the moon?
+
+Report them in a similar way to the chemical impulse in the Trajectory
+File, and also mention them in the Brief Description.  In the
+Trajectory File, list two lines with identical data for all quantities
+except velocity and possibly thrust; any thrust should be listed as
+zero for the first line and zero for the second line only if there is
+no thrust commencing at that time.  The first line will be for
+immediately prior to the flyby, the second for immediately after.  The
+velocity discontinuity between the two lines will equal the difference
+between the incoming and outgoing v-infinity vectors at the moon.
