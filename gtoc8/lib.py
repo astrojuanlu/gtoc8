@@ -1,9 +1,9 @@
 # coding: utf-8
-#
-# GTOC 8 library code
-#
-# Author: Juan Luis Cano Rodríguez <juanlu001@gmail.com>
-#
+"""GTOC 8 library code
+
+Author: Juan Luis Cano Rodríguez <juanlu001@gmail.com>
+
+"""
 import numpy as np
 
 
