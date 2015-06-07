@@ -2,7 +2,7 @@
 import numpy as np
 from numpy.testing import assert_array_equal
 
-from gtoc8 import (observation_triangle, rank_radio_sources)
+from gtoc8.lib import (observation_triangle, rank_radio_sources)
 
 
 def test_observation_triangle():
