@@ -110,3 +110,15 @@ def rank_radio_sources(vec, sources_data):
                  key=lambda row: distance_radio_source(vec, row[0], row[1]),
                  reverse=True)  # Descending
     return res
+
+
+def closest_radio_source(vec, sources_data):
+    """Computes closest radio source and corresponding distance.
+
+    """
+    distances = np.zeros(sources_data.shape[0])
+    for ii, row in enumerate(distances):
+        distances[ii] = distance_radio_source(vec, row[0], row[1])
+
+    return np.argmax(distances), np.max(distances)
+
