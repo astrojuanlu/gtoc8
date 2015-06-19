@@ -117,7 +117,8 @@ def closest_radio_source(vec, sources_data):
 
     """
     distances = np.zeros(sources_data.shape[0])
-    for ii, row in enumerate(distances):
+    for ii, row in enumerate(sources_data.as_matrix()):
+       
         distances[ii] = distance_radio_source(vec, row[0], row[1])
 
     return np.argmax(distances), np.max(distances)
