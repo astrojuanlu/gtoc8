@@ -64,9 +64,9 @@ def mutation(children, generation, num_parent, tiempos):
             tconst = children_n[9*sat + 4: 9*sat + 6]
             if tquim[0] > tiempos [2] :
                 tquim[0] = tiempos [2]
-            if tconst[0] > tquim[0] :
+            if tconst[0] < tquim[0] :
                 tconst[0] = tquim[0]
-            if tconst[1] > tconst[0] :
+            if tconst[1] < tconst[0] :
                 tconst[1] = tconst[0]
             
         children[i,:] = children_n[:]
