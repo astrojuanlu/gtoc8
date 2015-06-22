@@ -1,4 +1,5 @@
-﻿'''
+# coding: utf-8
+'''
 
 Created on Fri Feb 20 20:57:16 2015
 
@@ -123,4 +124,4 @@ if __name__ == '__main__':
                       num_winners, tiempos )   
 
 
-    main_program(all_parameters)    
+    main_program(all_parameters)
