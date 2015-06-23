@@ -7,7 +7,7 @@ Author: Juan Luis Cano Rodríguez <juanlu001@gmail.com>
 # numba versions
 try:
     import numba
-    if numba.__version__.split('.')[1] < 19:
+    if int(numba.__version__.split('.')[1]) < 19:
         raise ImportError
 
     jit = numba.njit
@@ -136,7 +136,7 @@ def rank_radio_sources(vec, sources_data):
     return res
 
 
-@jit('f8[:](f8[:], f8[:, :])')
+@jit('f8[:], f8[:, :]')
 def closest_radio_source(vec, sources_data):
     """Computes closest radio source and corresponding distance.
 
@@ -146,10 +146,7 @@ def closest_radio_source(vec, sources_data):
         row = sources_data[ii]
         distances[ii] = distance_radio_source(vec, row[0], row[1])
 
-    res = np.zeros(2)
-    res[0] = np.argmax(distances)
-    res[1] = np.max(distances)
-    return res
+    return np.argmax(distances), np.max(distances)
 
 
 
