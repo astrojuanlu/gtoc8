@@ -14,7 +14,7 @@ dada un valor, según la mejor oportunidad de observación que se obtiene.
 '''
 
 
-
+from __future__ import division
 
 import numpy as np
 import os
@@ -51,7 +51,7 @@ def pop_analice (generation, num_pop):
         os.remove(result_root)
     except :
         pass
-    result_file = open(result_root, mode = 'x')
+    result_file = open(result_root, mode = 'w')
     
     result_file.write('case  result  vector  minh  precission  step' + '\n')
     for ii in range(num_pop):

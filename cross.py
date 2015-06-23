@@ -18,7 +18,7 @@ the parents are preserved as the first elements of the new population.
 '''
 
 
-
+from __future__ import division
 
 import numpy as np
 

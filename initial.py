@@ -14,7 +14,7 @@ It does so by adding a random deviation to a default profile genome.
 '''
 
 
-
+from __future__ import division
 
 import os
 import numpy as np
@@ -140,7 +140,7 @@ def start_pop(pop_num, tiempos):
         os.remove(genome_root)
     except :
         pass
-    archivo = open(genome_root, mode = 'x')
+    archivo = open(genome_root, mode = 'w')
     archivo.write(title + '\n')
     
     for profile in np.arange(0, pop_num, 1):

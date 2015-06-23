@@ -15,7 +15,7 @@ genetic optimization of the profile.
 '''
 
 
-
+from __future__ import division
 
 import os
 import numpy as np
@@ -59,7 +59,7 @@ def finish(generation, tiempos):
         pass
     
     
-    report_file = open(report_root, mode = 'x')
+    report_file = open(report_root, mode = 'w')
     report_file.write(title + 3 * '\n')
     
     

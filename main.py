@@ -16,7 +16,7 @@ los parámetros y llama a esta función.
 '''
 
 
-
+from __future__ import division
 
 import os
 import orbiter as orbiter
@@ -70,10 +70,10 @@ def main_program(all_parameters):
     generation = 0
     print('')
     print('')
-    print('Iniciando cálculos de la generación 0, generada aleatoriamente')
+    print(u'Iniciando cálculos de la generación 0, generada aleatoriamente')
     print('')
 
-    initial.start_pop(solutions_per_generation, tiempos)
+    #initial.start_pop(solutions_per_generation, tiempos)
 
     orbiter.calculate_orbit_population(generation, tiempos)
 
@@ -86,7 +86,7 @@ def main_program(all_parameters):
 
         genetics.genetic_step(generation,num_parent, tiempos)
         print('')
-        print('Genoma de la generación ', generation + 1, ' calculado')
+        print(u'Genoma de la generación ', generation + 1, ' calculado')
         print('')
     
         orbiter.calculate_orbit_population(generation + 1,  tiempos)

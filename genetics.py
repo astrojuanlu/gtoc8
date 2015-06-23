@@ -15,7 +15,7 @@ This script is the Genetic Step Subprograme. After the integration of the
 '''
 
 
-
+from __future__ import division
 
 import os
 import numpy as np
@@ -54,7 +54,7 @@ def genetic_step(generation,num_parent, tiempos):
         pass
     
     
-    genome_file = open(genome_root, mode = 'x')
+    genome_file = open(genome_root, mode = 'w')
     genome_file.write(title + '\n')
     
     for profile in np.arange(0, profile_number, 1):
