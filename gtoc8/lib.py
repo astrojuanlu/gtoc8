@@ -4,7 +4,21 @@
 Author: Juan Luis Cano Rodríguez <juanlu001@gmail.com>
 
 """
+# numba versions
+try:
+    import numba
+    if numba.__version__.split('.')[1] < 19:
+        raise ImportError
+
+    jit = numba.njit
+except ImportError:
+    print("numba >= 0.19 is required for numba versions")
+    import poliastro.jit
+    jit = poliastro.jit.ijit
+
 import numpy as np
+
+from poliastro.util import dot
 
 
 def dist_point_segment(xp, x1, x2):
@@ -45,6 +59,7 @@ def cartesian_to_celestial(xp):
     return ra, dec
 
 
+@jit('f8[:](f8, f8)')
 def celestial_to_cartesian(ra, dec):
     """Convert (ra, dec) to (x, y, z) vector.
 
@@ -55,7 +70,12 @@ def celestial_to_cartesian(ra, dec):
     x = r * np.cos(ra) * np.cos(dec)
     y = r * np.sin(ra) * np.cos(dec)
     z = r * np.sin(dec)
-    return np.array([x, y, z])
+    res = np.zeros(3)
+    # res[:] = (x, y, z)
+    res[0] = x
+    res[1] = y
+    res[2] = z
+    return res
 
 
 def observation_triangle(x1, x2, x3):
@@ -74,6 +94,7 @@ def observation_triangle(x1, x2, x3):
     return vector, sorted(altitudes)
 
 
+@jit('f8(f8[:], f8, f8)')
 def distance_radio_source(vec, ra, dec):
     """Measurement of distance between radio source and observation vector.
 
@@ -89,9 +110,12 @@ def distance_radio_source(vec, ra, dec):
     vectors.
 
     """
-    vec_u = vec / np.linalg.norm(vec)
+    #vec_u = vec / dot(vec, vec) ** .5
+    vec_u = np.zeros(len(vec))
+    for ii in range(len(vec_u)):
+        vec_u[ii] = vec[ii] / dot(vec, vec) ** .5
     rs_xyz = celestial_to_cartesian(ra, dec)
-    return np.abs(np.dot(vec_u, rs_xyz))
+    return abs(dot(vec_u, rs_xyz))
 
 
 def rank_radio_sources(vec, sources_data):
@@ -112,14 +136,27 @@ def rank_radio_sources(vec, sources_data):
     return res
 
 
+@jit('f8[:](f8[:], f8[:, :])')
 def closest_radio_source(vec, sources_data):
     """Computes closest radio source and corresponding distance.
 
     """
     distances = np.zeros(sources_data.shape[0])
-    for ii, row in enumerate(sources_data.as_matrix()):
-       
+    for ii in range(sources_data.shape[0]):
+        row = sources_data[ii]
         distances[ii] = distance_radio_source(vec, row[0], row[1])
 
-    return np.argmax(distances), np.max(distances)
+    res = np.zeros(2)
+    res[0] = np.argmax(distances)
+    res[1] = np.max(distances)
+    return res
 
+
+
+if __name__ == '__main__':
+    import gio
+    catalogue = gio.load_catalogue("../data/gtoc8_radiosources.txt")
+
+    vec = np.array([0.01, 0.02, 0.98])
+
+    print(closest_radio_source(vec, catalogue.values))

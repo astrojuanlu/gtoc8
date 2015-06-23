@@ -10,7 +10,7 @@ Earth.k = 398600.4329 * u.km**3 / u.s**2  # GTOC 8
 
 import sys
 sys.path.insert(0, "../..")
-from gtoc8 import lib, io
+from gtoc8 import lib, gio
 from gtoc8.integrate import integrate_rk4_numba
 
 
@@ -35,7 +35,7 @@ sol1 = integrate_rk4_numba(t, u1)
 sol2 = integrate_rk4_numba(t, u2)
 sol3 = integrate_rk4_numba(t, u3)
 
-catalogue = io.load_catalogue("../../data/gtoc8_radiosources.txt")
+catalogue = gio.load_catalogue("../../data/gtoc8_radiosources.txt")
 
 # "the function that you give to map() must be accessible through
 # an import of your module"

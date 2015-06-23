@@ -19,7 +19,7 @@ from __future__ import division
 import numpy as np
 import os
 from gtoc8.lib import *
-from gtoc8.io import *
+from gtoc8.gio import *
 
 
 
